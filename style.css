@@ -1,0 +1,51 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: "Roboto", sans-serif;
+}
+
+#gameContainer {
+  text-align: center;
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+#scoreContainer {
+  background: #bbada0;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+#gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  background: #bbada0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: #cdc1b4;
+  border-radius: 5px;
+  width: 80px;
+  height: 80px;
+}
