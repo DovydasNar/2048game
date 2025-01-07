@@ -105,22 +105,34 @@ document.addEventListener("DOMContentLoaded", function () {
     return moved;
   }
 
+  let score = 0;
+
   function mergeTiles(array) {
     const result = array.filter((value) => value !== 0);
     const newArray = [];
 
     for (let i = 0; i < result.length; i++) {
       if (result[i] === result[i + 1]) {
-        newArray.push(result[i] * 2);
+        const mergedValue = result[i] * 2;
+        newArray.push(mergedValue);
+        score += mergedValue;
         i++;
       } else {
         newArray.push(result[i]);
       }
     }
+
     while (newArray.length < 4) {
       newArray.push(0);
     }
+
+    updateScore();
     return newArray;
+  }
+
+  function updateScore() {
+    const scoreElement = document.querySelector("#score");
+    scoreElement.textContent = score;
   }
 
   function getColumn(col) {

@@ -16,8 +16,17 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: auto;
   margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 30px;
+  color: white;
+  background-color: #edc22e;
+  margin: 0;
+  padding: 20px 10px;
+  border-radius: 5px;
 }
 
 #scoreContainer {
@@ -26,6 +35,19 @@ body {
   padding: 10px;
   border-radius: 5px;
   font-weight: bold;
+}
+
+#scoreLabel {
+  color: #cdc1b4;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#score {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
 }
 
 #gridContainer {
