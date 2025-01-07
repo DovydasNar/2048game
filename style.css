@@ -168,3 +168,21 @@ h1 {
 .tile.merge {
   animation-name: pop;
 }
+
+#gameOver.hidden {
+  display: none;
+}
+
+#gameOver button {
+  background: #8f7a66;
+  color: white;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+#gameOver button:hover {
+  background: #9c8b7f;
+}

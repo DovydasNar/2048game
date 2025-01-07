@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector("#gridContainer");
+  const resetButton = document.querySelector("#resetButton");
 
   let board = [
     [0, 0, 0, 0],
@@ -9,6 +10,26 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   let score = 0;
+
+  function initGame() {
+    board = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+    score = 0;
+    updateScore();
+    addRandomTile();
+    addRandomTile();
+    updateTiles();
+  }
+
+  resetButton.addEventListener("click", function () {
+    initGame();
+    const gameOverElement = document.querySelector("#gameOver");
+    gameOverElement.classList.add("hidden");
+  });
 
   for (let i = 0; i < 16; i++) {
     const cell = document.createElement("div");
@@ -181,6 +202,30 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
+  function isGameOver() {
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 4; col++) {
+        if (board[row][col] === 0) {
+          return false;
+        }
+        if (col < 3 && board[row][col] === board[row][col + 1]) {
+          return false;
+        }
+        if (row < 3 && board[row][col] === board[row + 1][col]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  function checkGameOver() {
+    if (isGameOver()) {
+      const gameOverElement = document.querySelector("#gameOver");
+      gameOverElement.classList.remove("hidden");
+    }
+  }
+
   document.addEventListener("keydown", function (event) {
     let moved = false;
     if (event.key === "ArrowUp") {
@@ -196,10 +241,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (moved) {
       addRandomTile();
       updateTiles();
+      checkGameOver();
     }
   });
 
-  addRandomTile();
-  addRandomTile();
-  updateTiles();
+  initGame();
 });
