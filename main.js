@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const newTile = document.createElement("div");
           newTile.classList.add("tile");
           newTile.textContent = tileValue;
+          newTile.setAttribute("data-value", tileValue);
           cell.appendChild(newTile);
         }
       }
