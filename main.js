@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector("#gridContainer");
   const resetButton = document.querySelector("#resetButton");
+  const continueButton = document.querySelector("#continue");
 
   let board = [
     [0, 0, 0, 0],
@@ -30,6 +31,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const gameOverElement = document.querySelector("#gameOver");
     gameOverElement.classList.add("hidden");
   });
+
+  continueButton.addEventListener("click", function () {
+    const winElement = document.querySelector("#winResult");
+    winElement.classList.add("hidden");
+  });
+
+  function checkforWin() {
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 4; col++) {
+        if (board[row][col] === 2048) {
+          const winElement = document.querySelector("#winResult");
+          winElement.classList.remove("hidden");
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
   const bestScoreElement = localStorage.getItem("bestScore") || 0;
   bestScoreElement.textContent = localStorage.getItem("bestScore") || 0;
@@ -254,7 +273,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (moved) {
       addRandomTile();
       updateTiles();
-      checkGameOver();
+      if (!checkforWin()) {
+        checkGameOver();
+      }
     }
   });
 
