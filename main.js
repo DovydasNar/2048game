@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
     [0, 0, 0, 0],
   ];
 
+  let score = 0;
+
   for (let i = 0; i < 16; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
@@ -47,6 +49,11 @@ document.addEventListener("DOMContentLoaded", function () {
           newTile.classList.add("tile");
           newTile.textContent = tileValue;
           newTile.setAttribute("data-value", tileValue);
+
+          if (!cell.querySelector(".tile")) {
+            newTile.classList.add("new");
+          }
+
           cell.appendChild(newTile);
         }
       }
@@ -105,8 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return moved;
   }
 
-  let score = 0;
-
   function mergeTiles(array) {
     const result = array.filter((value) => value !== 0);
     const newArray = [];
@@ -117,6 +122,13 @@ document.addEventListener("DOMContentLoaded", function () {
         newArray.push(mergedValue);
         score += mergedValue;
         i++;
+
+        setTimeout(() => {
+          const tiles = grid.querySelectorAll(
+            `.tile[data-value="${mergedValue}"]`
+          );
+          tiles.forEach((tile) => tile.classList.add("merge"));
+        }, 0);
       } else {
         newArray.push(result[i]);
       }
@@ -129,6 +141,16 @@ document.addEventListener("DOMContentLoaded", function () {
     updateScore();
     return newArray;
   }
+
+  function removeAnimationClasses() {
+    const tiles = document.querySelectorAll(".tile");
+    tiles.forEach((tile) => {
+      tile.classList.remove("new", "merge");
+    });
+  }
+
+  updateTiles();
+  setTimeout(removeAnimationClasses, 200);
 
   function updateScore() {
     const scoreElement = document.querySelector("#score");
