@@ -29,7 +29,8 @@ h1 {
   border-radius: 5px;
 }
 
-#scoreContainer {
+#scoreContainer,
+#bestScoreContainer {
   background: #bbada0;
   color: white;
   padding: 10px;
@@ -37,14 +38,16 @@ h1 {
   font-weight: bold;
 }
 
-#scoreLabel {
-  color: #cdc1b4;
+#scoreLabel,
+#bestScoreLabel {
+  color: #eee4da;
   font-size: 20px;
   margin-right: 10px;
   margin-left: 10px;
 }
 
-#score {
+#score,
+#bestScore {
   font-size: 24px;
   font-weight: bold;
   color: white;

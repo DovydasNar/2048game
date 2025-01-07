@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
     gameOverElement.classList.add("hidden");
   });
 
+  const bestScoreElement = localStorage.getItem("bestScore") || 0;
+  bestScoreElement.textContent = localStorage.getItem("bestScore") || 0;
+
   for (let i = 0; i < 16; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
@@ -175,7 +178,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function updateScore() {
     const scoreElement = document.querySelector("#score");
+    const bestScoreElement = document.querySelector("#bestScore");
     scoreElement.textContent = score;
+
+    let bestScore = localStorage.getItem("bestScore") || 0;
+
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("bestScore", bestScore);
+    }
+
+    bestScoreElement.textContent = bestScore;
   }
 
   function getColumn(col) {
