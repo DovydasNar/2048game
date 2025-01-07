@@ -36,6 +36,9 @@ body {
   background: #bbada0;
   padding: 10px;
   border-radius: 10px;
+  width: 380px;
+  height: 380px;
+  position: relative;
 }
 
 .cell {
@@ -48,4 +51,18 @@ body {
   border-radius: 5px;
   width: 80px;
   height: 80px;
+}
+.tile {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: #eee4da;
+  color: #776e65;
+  border-radius: 5px;
+  width: 80px;
+  height: 80px;
+  transition: 0.2s;
 }
