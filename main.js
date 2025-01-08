@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const grid = document.querySelector("#gridContainer");
   const resetButton = document.querySelector("#resetButton");
-  const continueButton = document.querySelector("#continue");
+
+  let gameWon = false;
 
   let board = [
     [0, 0, 0, 0],
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
       [0, 0, 0, 0],
     ];
     score = 0;
+    gameWon = false;
     updateScore();
     addRandomTile();
     addRandomTile();
@@ -29,18 +31,17 @@ document.addEventListener("DOMContentLoaded", function () {
   resetButton.addEventListener("click", function () {
     initGame();
     const gameOverElement = document.querySelector("#gameOver");
-    gameOverElement.classList.add("hidden");
-  });
-
-  continueButton.addEventListener("click", function () {
     const winElement = document.querySelector("#winResult");
+    gameOverElement.classList.add("hidden");
     winElement.classList.add("hidden");
+    gameWon = false;
   });
 
   function checkforWin() {
     for (let row = 0; row < 4; row++) {
       for (let col = 0; col < 4; col++) {
-        if (board[row][col] === 2048) {
+        if (board[row][col] === 2048 && !gameWon) {
+          gameWon = true;
           const winElement = document.querySelector("#winResult");
           winElement.classList.remove("hidden");
           return true;
@@ -255,6 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (isGameOver()) {
       const gameOverElement = document.querySelector("#gameOver");
       gameOverElement.classList.remove("hidden");
+      const winElement = document.querySelector("#winResult");
+      winElement.classList.add("hidden");
     }
   }
 
@@ -273,6 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (moved) {
       addRandomTile();
       updateTiles();
+
       if (!checkforWin()) {
         checkGameOver();
       }
